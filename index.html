@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faux Virus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: lime;
+            text-align: center;
+            padding: 50px;
+        }
+        #progress-container {
+            width: 80%;
+            background-color: grey;
+            margin: 0 auto;
+            height: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: red;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+        #messages {
+            margin-top: 20px;
+            height: 100px;
+            overflow: hidden;
+        }
+        .message {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Votre appareil est en train de se faire hacker !</h1>
+    <div id="progress-container">
+        <div id="progress-bar">0%</div>
+    </div>
+    <div id="messages">
+        <!-- Added many more messages to cover the 2 minutes duration -->
+        <div class="message">Chiffrage des données en cours...</div>
+        <div class="message">Réinitialisation des mises à jour de sécurité...</div>
+        <div class="message">Téléchargement de logiciels malveillants...</div>
+        <div class="message">Suppression des fichiers système...</div>
+        <div class="message">Transfert de données sensibles...</div>
+        <div class="message">Accès à la caméra et au microphone...</div>
+        <div class="message">Installation de virus supplémentaires...</div>
+        <div class="message">Analyse des réseaux voisins...</div>
+        <div class="message">Suppression des logs système...</div>
+        <div class="message">Désactivation du pare-feu...</div>
+        <div class="message">Copie des mots de passe enregistrés...</div>
+        <div class="message">Effacement du disque dur en cours...</div>
+        <div class="message">Modification des paramètres de sécurité...</div>
+        <div class="message">Exfiltration des données vers un serveur distant...</div>
+        <div class="message">Téléchargement de nouveaux exploits...</div>
+        <div class="message">Désinstallation des logiciels antivirus...</div>
+        <div class="message">Modification des permissions des fichiers...</div>
+        <div class="message">Modification des registres Windows...</div>
+        <div class="message">Chiffrage des fichiers personnels...</div>
+        <div class="message">Surveillance de l'activité en cours...</div>
+        <div class="message">Accès aux fichiers protégés...</div>
+        <div class="message">Modification des configurations réseau...</div>
+        <div class="message">Intégration dans le botnet...</div>
+        <div class="message">Récupération des informations de carte de crédit...</div>
+        <div class="message">Accès aux emails et contacts...</div>
+        <div class="message">Désactivation des alertes système...</div>
+        <div class="message">Effacement des traces d'intrusion...</div>
+        <div class="message">Installation d'un rootkit...</div>
+        <div class="message">Cryptojacking en cours...</div>
+        <div class="message">Modification des mots de passe...</div>
+        <div class="message">Accès aux comptes bancaires en ligne...</div>
+    </div>
+    <script>
+        const progressBar = document.getElementById('progress-bar');
+        const messages = document.querySelectorAll('.message');
+        let progress = 0;
+        let currentMessageIndex = 0;
+        const totalDuration = 120; // Total duration in seconds (2 minutes)
+        const interval = (totalDuration * 1000) / 100; // Interval in milliseconds
+
+        function updateProgress() {
+            if (progress < 100) {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+
+                if (progress % Math.floor(100 / messages.length) === 0 && currentMessageIndex < messages.length) {
+                    if (currentMessageIndex > 0) {
+                        messages[currentMessageIndex - 1].style.display = 'none';
+                    }
+                    messages[currentMessageIndex].style.display = 'block';
+                    currentMessageIndex++;
+                }
+
+                setTimeout(updateProgress, interval);
+            } else {
+                progressBar.textContent = 'Hacking terminé';
+                setTimeout(() => {
+                    // Hide the messages and attempt to close the tab
+                    document.getElementById('messages').style.display = 'none';
+                    closeWindow();
+                }, 2000);
+            }
+        }
+
+        function closeWindow() {
+            if (typeof window.close === 'function') {
+                window.close();
+            } else {
+                alert('Veuillez fermer cet onglet.');
+            }
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
